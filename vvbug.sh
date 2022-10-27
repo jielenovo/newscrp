@@ -6,16 +6,7 @@ MYIP=$(curl -sS ipv4.icanhazip.com)
 echo -e "\e[32mloading...\e[0m"
 clear
 # Valid Script
-VALIDITY () {
-    today=`date -d "0 days" +"%Y-%m-%d"`
-    Exp1=$(curl https://raw.githubusercontent.com/${GitUser}/allow/main/ipvps.conf | grep $MYIP | awk '{print $4}')
-    if [[ $today < $Exp1 ]]; then
-    echo -e "\e[32mYOUR SCRIPT ACTIVE..\e[0m"
-    else
-    echo -e "\e[31mYOUR SCRIPT HAS EXPIRED!\e[0m";
-    echo -e "\e[31mPlease renew your ipvps first\e[0m"
-    exit 0
-fi
+
 }
 clear
 # PROVIDED
@@ -37,13 +28,13 @@ number=$(cat /etc/number)
 # TOTAL ACC CREATE VMESS WS
 total1=$(grep -c -E "^#vms " "/usr/local/etc/xray/config.json")
 # TOTAL ACC CREATE  VLESS WS
-total2=$(grep -c -E "^#vls " "/usr/local/etc/xray/config.json")
+total2=$(grep -c -E "^#vls " "/etc/xray/config.json")
 # TOTAL ACC CREATE  VLESS TCP XTLS
 total3=$(grep -c -E "^#vxtls " "/usr/local/etc/xray/config.json")
 MYIP=$(wget -qO- ifconfig.me/ip);
-source /var/lib/premium-script/ipvps.conf
+source /var/lib/akbarstorevpn/ipvps.conf
 if [[ "$IP" = "" ]]; then
-domain=$(cat /usr/local/etc/xray/domain)
+domain=$(cat /etc/xray/domain)
 else
 domain=$IP
 fi
